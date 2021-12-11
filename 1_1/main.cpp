@@ -59,8 +59,8 @@ void FreeTree(Node* node) {
         Node* aboba = stack_node.front();
         if (aboba != nullptr) {
             stack_node.pop();
-            stack_node.push(aboba->Left);
-            stack_node.push(aboba->Right);
+            if (aboba->Left != nullptr) stack_node.push(aboba->Left);
+            if (aboba->Right != nullptr) stack_node.push(aboba->Right);
         } else {
             stack_node.pop();
         }
