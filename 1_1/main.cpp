@@ -1,3 +1,5 @@
+//https://contest.yandex.ru/contest/32613/run-report/60822104/
+
 #include <iostream>
 #include <queue>
 #include <deque>
@@ -76,6 +78,5 @@ int main() {
     }
     print(root);
     FreeTree(root);
-    print(root);
     return 0;
 }
