@@ -56,15 +56,14 @@ void FreeTree(Node* node) {
     std::queue <Node*> stack_node;
     stack_node.push(node);
     while (!stack_node.empty()) {
-        Node* aboba = stack_node.front();
+        Node *aboba = stack_node.front();
+        stack_node.pop();
         if (aboba != nullptr) {
-            stack_node.pop();
             if (aboba->Left != nullptr) stack_node.push(aboba->Left);
             if (aboba->Right != nullptr) stack_node.push(aboba->Right);
-        } else {
-            stack_node.pop();
+            std::cout << aboba->Key << " ";
+            delete aboba;
         }
-        delete aboba;
     }
 }
 
