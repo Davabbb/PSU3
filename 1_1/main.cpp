@@ -59,9 +59,8 @@ void FreeTree(Node* node) {
         Node *aboba = stack_node.front();
         stack_node.pop();
         if (aboba != nullptr) {
-            if (aboba->Left != nullptr) stack_node.push(aboba->Left);
-            if (aboba->Right != nullptr) stack_node.push(aboba->Right);
-            std::cout << aboba->Key << " ";
+            stack_node.push(aboba->Left);
+            stack_node.push(aboba->Right);
             delete aboba;
         }
     }
