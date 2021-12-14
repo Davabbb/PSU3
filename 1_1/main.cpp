@@ -52,7 +52,7 @@ void print(Node* node) {
     } while (!stack_node.empty() || node != nullptr);
 }
 
-void FreeTree(Node* node) {
+void FreeTree(Node* &node) {
     std::queue <Node*> stack_node;
     stack_node.push(node);
     while (!stack_node.empty()) {
