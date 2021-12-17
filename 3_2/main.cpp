@@ -1,6 +1,7 @@
 //https://contest.yandex.ru/contest/32613/run-report/61219347/
 
 #include <iostream>
+#include <queue>
 
 struct AVLNode {
     int Key;
@@ -117,6 +118,20 @@ int Statistics(AVLNode* node, int k) {
     return Statistics(node->Right, k - index - 1);
 }
 
+void FreeTree(AVLNode*& node) {
+    std::queue <AVLNode*> stack_node;
+    stack_node.push(node);
+    while (!stack_node.empty()) {
+        AVLNode *aboba = stack_node.front();
+        stack_node.pop();
+        if (aboba != nullptr) {
+            stack_node.push(aboba->Left);
+            stack_node.push(aboba->Right);
+            delete aboba;
+        }
+    }
+}
+
 int main() {
     int n;
     int num, k;
@@ -134,5 +149,6 @@ int main() {
         }
         std::cout << Statistics(node, k) << std::endl;
     }
+    FreeTree(node);
     return 0;
 }
