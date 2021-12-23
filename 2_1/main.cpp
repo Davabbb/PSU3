@@ -15,16 +15,14 @@ void add_bst(int key, Node_BS* &node) {
     stack_node.push(node);
     while (!stack_node.empty()) {
         Node_BS* node_ = stack_node.front();
+        stack_node.pop();
         if (key < node_->Key) {
             if (node_->Left) {
-                stack_node.pop();
                 stack_node.push(node_->Left);
             } else {
                 node_->Left = new Node_BS(key);
-                stack_node.pop();
             }
         } else {
-            stack_node.pop();
             if (node_->Right) {
                 stack_node.push(node_->Right);
             } else {
@@ -40,14 +38,14 @@ int max_depth(Node_BS* node) {
 }
 
 void FreeTree(Node_BS* node) {
-    std::queue <Node_BS*> stack_node;
-    stack_node.push(node);
-    while (!stack_node.empty()) {
-        Node_BS *aboba = stack_node.front();
-        stack_node.pop();
+    std::queue <Node_BS*> queue_node;
+    queue_node.push(node);
+    while (!queue_node.empty()) {
+        Node_BS *aboba = queue_node.front();
+        queue_node.pop();
         if (aboba != nullptr) {
-            stack_node.push(aboba->Left);
-            stack_node.push(aboba->Right);
+            queue_node.push(aboba->Left);
+            queue_node.push(aboba->Right);
             delete aboba;
         }
     }
