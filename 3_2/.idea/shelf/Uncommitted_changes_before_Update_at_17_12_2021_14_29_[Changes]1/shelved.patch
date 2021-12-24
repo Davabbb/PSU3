@@ -1,0 +1,13 @@
+Index: ../2_1/.idea/2_1.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../2_1/.idea/2_1.iml b/../2_1/.idea/2_1.iml
+new file mode 100644
+--- /dev/null	
++++ b/../2_1/.idea/2_1.iml	
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module classpath="CMake" type="CPP_MODULE" version="4" />
+\ No newline at end of file
