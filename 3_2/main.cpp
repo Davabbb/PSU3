@@ -1,4 +1,4 @@
-//https://contest.yandex.ru/contest/32613/run-report/62778957/
+//https://contest.yandex.ru/contest/32613/run-report/63153178/
 
 #include <iostream>
 
@@ -102,12 +102,11 @@ AVLNode* Del(int key, AVLNode* node) {
     else {
         AVLNode* left = node->Left;
         AVLNode* right = node->Right;
-        delete node;
+        node->Key = key;
         if (!right) return left;
-        auto* min = new AVLNode(0);
-        min->Right = RemoveMin(right, min);
-        min->Left = left;
-        return FixTree(min);
+        node->Right = RemoveMin(right, node);
+        node->Left = left;
+        return FixTree(node);
     }
     return FixTree(node);
 }
