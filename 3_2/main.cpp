@@ -80,33 +80,33 @@ void Add(int key, AVLNode*& node) {
     node = FixTree(node);
 }
 
-AVLNode* FindMin(AVLNode* node) {
-    return node->Left ? FindMin(node->Left) : node;
-}
-
-AVLNode* RemoveMin(AVLNode* node, AVLNode*& node1) {
-    if (node->Left == nullptr) {
-        node1 = node;
-        return node->Right;
+AVLNode* RemoveMin(AVLNode* node, int &key) {
+    if (node->Left) {
+        node->Left = RemoveMin(node->Left, key);
+    } else {
+        key = node->Key;
+        AVLNode* right = node->Right;
+        delete node;
+        return right;
     }
-    node->Left = RemoveMin(node->Left, node1);
     return FixTree(node);
 }
 
 AVLNode* Del(int key, AVLNode* node) {
-    if (!node) return nullptr;
     if (node->Key < key)
         node->Right = Del(key, node->Right);
     else if (node->Key > key)
         node->Left = Del(key, node->Left);
     else {
-        AVLNode* left = node->Left;
-        AVLNode* right = node->Right;
-        node->Key = key;
-        if (!right) return left;
-        node->Right = RemoveMin(right, node);
-        node->Left = left;
-        return FixTree(node);
+        if (!node->Left || !node->Right) {
+            AVLNode* son = node->Left ? node->Left : node->Right;
+            delete node;
+            return son;
+        } else {
+            int min_key = 0;
+            node->Right = RemoveMin(node->Right, min_key);
+            node->Key = min_key;
+        }
     }
     return FixTree(node);
 }
